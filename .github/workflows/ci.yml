@@ -31,9 +31,11 @@ jobs:
       
     - name: Upload coverage report
       uses: actions/upload-artifact@v4
+      if: always()
       with:
-        name: coverage-report
+        name: coverage-report-${{ matrix.node-version }}
         path: coverage/
+        if-no-files-found: ignore
         
   deploy:
     needs: test
